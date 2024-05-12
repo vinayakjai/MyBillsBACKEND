@@ -36,7 +36,7 @@ async function register(req,res){
      
      await user.save();
      return res.cookie("billToken",userToken,{
-        httpOnly:true,
+      
         sameSite:"none",
         secure:true,
         maxAge:2592000000,//1month
@@ -80,7 +80,7 @@ async function login(req,res){
 
     const userToken=await user.generateToken();
       return res.cookie("billToken",userToken,{
-        httpOnly:true,
+        
         sameSite:"none",
         secure:true,
         maxAge:2592000000,
