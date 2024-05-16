@@ -259,7 +259,8 @@ async function getPriceRecordByDate(req,res){
       })
     }
     console.log("date-->",date);
-    let record=await Record.findOne({'priceRecord.date':date});
+    let record=await Record.findOne({user_id:req.user._id.toString()});
+    
     console.log(record)
     if(!record){
       return res.status(404).json({
@@ -267,9 +268,15 @@ async function getPriceRecordByDate(req,res){
         error:"unable to fetch record with given date provided"
       })
     }
+    let amountRecord=null;
+    record.priceRecord.filter((todayAmountList)=>{
+        if(todayAmountList.date==date){
+               amountRecord=todayAmountList.amountList;
+        }
+    })
     return res.status(201).json({
       success:true,
-      amountRecord:record.priceRecord[0].amountList,
+      amountRecord,
     });
 
 

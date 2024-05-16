@@ -10,9 +10,10 @@ const userRouter = require("./routes/user");
 const app=express();
 
 app.use(cors({
-    origin:"https://mybillsapp.netlify.app",
+    origin:"http://localhost:5173",
     credentials:true,
 }))
+//"https://mybillsapp.netlify.app"
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:true}))

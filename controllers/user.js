@@ -64,6 +64,7 @@ async function login(req,res){
         })
       }
       const user=await User.findOne({email});
+      
       if(!user){
         return res.status(404).json({
             success:false,
@@ -72,6 +73,7 @@ async function login(req,res){
       }
 
       if(password!=user.password){
+        
          return res.status(401).json({
             success:false,
             error:"incorrect password",
